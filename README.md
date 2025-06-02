@@ -1,5 +1,4 @@
 # 🛡️ Network Security Lab Guide
----
 
 ## 📋 Introduction
 
@@ -67,12 +66,10 @@ This script typically contains ip or ifconfig commands to assign static IPs to i
 <p align="center"> <img src="https://github.com/user-attachments/assets/6e6700ec-d227-48bf-a719-837ad45e074c" width="47%" style="margin-right:10px;" /> <img src="https://github.com/user-attachments/assets/3a63eaab-b030-487a-ae68-ee31b323739b" width="47%" /> </p>
 ✅ This method saves time, avoids misconfigurations, and ensures consistent network behavior in your lab setup.
 To make sure that you asign to each interface the right ip address run this command in the terminal 
-```bash 
-ip a 
-```
+![image](https://github.com/user-attachments/assets/dd0251f5-1325-45ab-8950-0ac970cb1d81)
 
 ---
-## 🌐 3. Set Up Apache2 Web Server (on Server VM)
+## 🌐 2. Set Up Apache2 Web Server (on Server VM)
 
 ### Install Apache2
 
@@ -83,16 +80,115 @@ sudo apt install apache2
 
 ### Create a login page `login.html`
 
-Place it in:
-
+```bash
+cd /var/www/html
+sudo nano login.html
 ```
-/var/www/html/login.html
+Paste the following basic HTML code inside login.html:
+```bash <!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+</head>
+<body>
+  <h2>Login</h2>
+  <form method="POST" action="/login">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username"><br><br>
+    
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password"><br><br>
+    
+    <input type="submit" value="Login">
+  </form>
+</body>
+</html>
 ```
+Save and exit nano:
+Press `Ctrl + O` → then `Enter` to save.
+Then press `Ctrl + X` to `exit`.
+After configuring the server and website, test the setup by accessing the server’s IP address from both server and the client machine. 
+Test by accessing `http://192.168.20.2/login.html` use firefox or any browser :
+![image](https://github.com/user-attachments/assets/bf03806d-8bf2-47b8-97bc-82147ed6e25d)
+Test the access also from the client :
+![image](https://github.com/user-attachments/assets/4b9f574f-3362-4eae-bb1d-0b0d90f717c5)
 
-Test by accessing `http://192.168.20.2/login.html` from the Client.
 ---
+## 🔎📡 3.Filtering Traffic with Wireshark
+In this section, we’ll use Wireshark to capture and analyze traffic between the Client and the Server.
+The goal is to compare HTTP vs HTTPS and understand how unencrypted traffic can expose sensitive data.
+🧭 Step-by-step Instructions
+* Open Wireshark on the Firewall machine.
+* Select the interface connected to either the Client (eth0) or Server (eth1).
+* Start capturing packets by clicking the blue shark icon.
+* Apply a filter to only see HTTP or TLS traffic:
+```bash
+http || tls
+```
+These screenshots show the live packet capture window and the login page used to trigger HTTP requests.
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/b534371c-d5a7-4d36-99e3-7681feb0b7e0" width="30%" style="margin-right: 10px;" />
+  <img src="https://github.com/user-attachments/assets/c69fbd5d-464e-4458-872c-389126b0d654" width="30%" style="margin-right: 10px;" />
+  <img src="https://github.com/user-attachments/assets/af891363-db39-4471-a82a-1cb855196391" width="30%" />
+</p>
+📬 Filtering for HTTP Traffic
+Captured HTTP request with sensitive data in plaintext:
+![image](https://github.com/user-attachments/assets/e66de6b3-805e-4dad-bb65-5f2877ecabcd)
 
-## 🔥 2. Configure iptables on Firewall
+```bash
+GET /test1/?username=salut&password=kan HTTP/1.1
+```
+This line confirms that username and password are transmitted without encryption over HTTP.
+### ⚠️ Security Risk
+
+ HTTP transmits sensitive data in plaintext, making it vulnerable to interception. To protect this data, HTTPS should be used, as it encrypts communication, ensuring the confidentiality and integrity of sensitive information.
+ 
+---
+## 🔐 4. Configure HTTPS with OpenSSL
+
+### Generate a Self-Signed Certificate:
+
+```bash
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+ -keyout /etc/ssl/private/apache-selfsigned.key \
+ -out /etc/ssl/certs/apache-selfsigned.crt
+```
+
+### Enable SSL in Apache:
+
+```bash
+sudo a2enmod ssl
+sudo a2ensite default-ssl
+sudo systemctl restart apache2
+```
+![image](https://github.com/user-attachments/assets/48afee02-ae91-4ecc-97b1-c48cba5708c0)
+
+### Update `ports.conf`:
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/0087d1e0-6170-43a8-9135-a32bf280a9b0" width="48%" style="margin-right: 2%;" />
+  <img src="https://github.com/user-attachments/assets/3f7f848f-d9bf-4240-9216-702929f28efd" width="48%" />
+</p>
+Make sure it includes:
+```
+Listen 443
+```
+
+### Common Warning:
+![image](https://github.com/user-attachments/assets/543b6b70-f0d9-4082-8df4-80ed08768e8e)
+
+> ⚠️ Browser may show "Potential Security Risk Ahead" due to self-signed cert. ✅ Accept the risk and continue.
+
+### Capture Traffic with Wireshark:
+follow the same steps of using wireshark ,now filter with tls
+```bash
+tls
+```
+You’ll observe:
+* HTTPS request: encrypted
+![image](https://github.com/user-attachments/assets/e5d3a227-41f4-460f-b70a-bda513129fde)
+
+---
+## 🔥 5. Configure iptables on Firewall
 
 ### Block HTTPS traffic:
 
@@ -115,60 +211,6 @@ You can verify with:
 ```bash
 sudo iptables -L -n -v
 ```
-
----
-
-## 🌐 3. Set Up Apache2 Web Server (on Server VM)
-
-### Install Apache2
-
-```bash
-sudo apt update
-sudo apt install apache2
-```
-
-### Create a login page `login.html`
-
-Place it in:
-
-```
-/var/www/html/login.html
-```
-
-Test by accessing `http://192.168.20.2/login.html` from the Client.
-
----
-
-## 🔐 4. Configure HTTPS with OpenSSL
-
-### Generate a Self-Signed Certificate:
-
-```bash
-sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
- -keyout /etc/ssl/private/apache-selfsigned.key \
- -out /etc/ssl/certs/apache-selfsigned.crt
-```
-
-### Enable SSL in Apache:
-
-```bash
-sudo a2enmod ssl
-sudo a2ensite default-ssl
-sudo systemctl restart apache2
-```
-
-### Update `ports.conf`:
-
-Make sure it includes:
-
-```
-Listen 443
-```
-
-### Common Warning:
-
-> ⚠️ Browser may show "Potential Security Risk Ahead" due to self-signed cert. ✅ Accept the risk and continue.
-
 ---
 
 ## 🕵️ 5. Capture Traffic with Wireshark
@@ -242,6 +284,4 @@ This lab forms a solid foundation in **hands-on network security** for beginners
 ## 📎 Bonus
 
 Feel free to fork this repo, add your own test cases, rules, or share suggestions via Pull Requests!
-
-📧 Contact: [Soumaya Elkanfoud](mailto:youremail@example.com)
-🔗 LinkedIn: [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)
+🔗 LinkedIn: 
