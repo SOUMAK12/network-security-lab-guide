@@ -249,16 +249,10 @@ iptables is a powerful command-line utility in Linux used to set up, maintain, a
 It acts as a firewall that controls incoming and outgoing traffic by defining rules that allow, block, or redirect packets.
 
 Each rule in iptables specifies:
-
-A direction (input, output, forward),
-
-A protocol (TCP, UDP, etc.),
-
-A port number (e.g. 443 for HTTPS),
-
-And an action (ACCEPT, DROP, REJECT...).
-
-
+* A direction (input, output, forward),
+* A protocol (TCP, UDP, etc.),
+* A port number (e.g. 443 for HTTPS),
+* And an action (ACCEPT, DROP, REJECT...).
 
 ### Block HTTPS traffic:
 
