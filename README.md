@@ -1,6 +1,4 @@
 # 🛡️ Network Security Lab Guide
-
-**Cybersecurity Lab Project – 2024/2025**
 ---
 
 ## 📋 Introduction
