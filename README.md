@@ -52,8 +52,9 @@ For each **machine** (Client, Firewall, and Server), you have manually assign th
 | Firewall | `eth1`    | `192.168.20.1` | Server        |
 | Server   | `eth0`    | `192.168.20.2` | Firewall eth1 |
 
-Assign **static IPs** manually in `/etc/network/interfaces` .
-###⚙️ Automating IP Configuration with a Script
+Assign **static IPs** manually in `/etc/network/interfaces` 
+
+### ⚙️ Automating IP Configuration with a Script
 When working with VirtualBox in Internal Network mode, machines may lose their IP addresses upon reboot or interface changes. To avoid manually reconfiguring each time, it's good practice to create a dedicated script for each machine that sets its static IP addresses.
 In the screenshot below, I demonstrate the creation and execution of such a script (firewall.sh) on the Firewall machine (Kali Linux).
 
@@ -63,10 +64,32 @@ sudo chmod +x firewall.sh     # Make it executable
 sudo ./firewall.sh            # Run the script
 ```
 This script typically contains ip or ifconfig commands to assign static IPs to interfaces like eth0 and eth1.
-<p align="center"> <img src="https://github.com/user-attachments/assets/6e6700ec-d227-48bf-a719-837ad45e074c)" width="50%">
-  <img src="https://github.com/user-attachments/assets/3a63eaab-b030-487a-ae68-ee31b323739b" width="50%">
-</p>
+<p align="center"> <img src="https://github.com/user-attachments/assets/6e6700ec-d227-48bf-a719-837ad45e074c" width="47%" style="margin-right:10px;" /> <img src="https://github.com/user-attachments/assets/3a63eaab-b030-487a-ae68-ee31b323739b" width="47%" /> </p>
+✅ This method saves time, avoids misconfigurations, and ensures consistent network behavior in your lab setup.
+To make sure that you asign to each interface the right ip address run this command in the terminal 
+```bash 
+ip a 
+```
 
+---
+## 🌐 3. Set Up Apache2 Web Server (on Server VM)
+
+### Install Apache2
+
+```bash
+sudo apt update
+sudo apt install apache2
+```
+
+### Create a login page `login.html`
+
+Place it in:
+
+```
+/var/www/html/login.html
+```
+
+Test by accessing `http://192.168.20.2/login.html` from the Client.
 ---
 
 ## 🔥 2. Configure iptables on Firewall
