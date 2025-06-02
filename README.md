@@ -58,6 +58,7 @@ Assign **static IPs** manually in `/etc/network/interfaces`
 ### ⚙️ Automating IP Configuration with a Script
 
 When working with VirtualBox in Internal Network mode, machines may lose their IP addresses upon reboot or interface changes. To avoid manually reconfiguring each time, it's good practice to create a dedicated script for each machine that sets its static IP addresses.
+
 In the screenshot below, I demonstrate the creation and execution of such a script (firewall.sh) on the Firewall machine (Kali Linux).
 
 ```bash
@@ -66,11 +67,14 @@ sudo chmod +x firewall.sh     # Make it executable
 sudo ./firewall.sh            # Run the script
 ```
 This script typically contains ip or ifconfig commands to assign static IPs to interfaces like eth0 and eth1.
+
 <p align="center"> <img src="https://github.com/user-attachments/assets/6e6700ec-d227-48bf-a719-837ad45e074c" width="47%" style="margin-right:10px;" /> <img src="https://github.com/user-attachments/assets/3a63eaab-b030-487a-ae68-ee31b323739b" width="47%" /> </p>
+
 ✅ This method saves time, avoids misconfigurations, and ensures consistent network behavior in your lab setup.
 
 To make sure that you asign to each interface the right ip address run this command in the terminal 
-![image](https://github.com/user-attachments/assets/dd0251f5-1325-45ab-8950-0ac970cb1d81)
+
+<p align="center"><src img="https://github.com/user-attachments/assets/dd0251f5-1325-45ab-8950-0ac970cb1d81" width="50%"></p>
 
 ---
 ## 🌐 2. Set Up Apache2 Web Server (on Server VM)
@@ -115,15 +119,20 @@ Press `Ctrl + O` → then `Enter` to save.
 Then press `Ctrl + X` to `exit`.
 
 After configuring the server and website, test the setup by accessing the server’s IP address from both server and the client machine. 
+
 Test by accessing `http://192.168.20.2/login.html` use firefox or any browser :
-![image](https://github.com/user-attachments/assets/bf03806d-8bf2-47b8-97bc-82147ed6e25d)
+
+<p align="center"><img src="https://github.com/user-attachments/assets/bf03806d-8bf2-47b8-97bc-82147ed6e25d" width="50%"></p>
+
 Test the access also from the client :
-![image](https://github.com/user-attachments/assets/4b9f574f-3362-4eae-bb1d-0b0d90f717c5)
+
+<p align="center"><img src="https://github.com/user-attachments/assets/4b9f574f-3362-4eae-bb1d-0b0d90f717c5" width="%50"></p>
 
 ---
 ## 🔎📡 3.Filtering Traffic with Wireshark
 In this section, we’ll use Wireshark to capture and analyze traffic between the Client and the Server.
 The goal is to compare HTTP vs HTTPS and understand how unencrypted traffic can expose sensitive data.
+
 🧭 Step-by-step Instructions
 * Open Wireshark on the Firewall machine.
 * Select the interface connected to either the Client (eth0) or Server (eth1).
