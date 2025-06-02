@@ -1,5 +1,4 @@
 # 🛡️ Network Security Lab Guide
----
 
 ## 📋 Introduction
 This guide documents the steps to build a virtual lab to test and implement essential network security techniques using:
