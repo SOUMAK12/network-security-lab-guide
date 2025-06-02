@@ -1,8 +1,8 @@
 # 🛡️ Network Security Lab Guide
 
 **Cybersecurity Lab Project – 2024/2025**
-Prepared by: Soumaya Elkanfoud
-Supervisor: Mrs. Saiida Lazaar
+*Prepared by: Soumaya Elkanfoud
+*Supervisor: Mrs. Saiida Lazaar
 
 ---
 
@@ -16,7 +16,9 @@ This guide documents the steps to build a virtual lab to test and implement esse
 * **OpenSSL + Apache2** (HTTPS server setup)
 
 We use **VirtualBox** with 3 VMs:
+
 ![image](https://github.com/user-attachments/assets/57711009-e578-4387-8018-cbc38232d313)
+
 * 🔒 **Firewall** (Kali Linux)
 * 🧑‍💻 **Client** (Ubuntu)
 * 🖥️ **Server** (Ubuntu Server or any machine you have)
