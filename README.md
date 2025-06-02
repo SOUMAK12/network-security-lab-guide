@@ -100,8 +100,8 @@ sudo ./firewall.sh            # Run the script
 This script typically contains ip or ifconfig commands to assign static IPs to interfaces like eth0 and eth1.
 
 <p align="center"> <img src="https://github.com/user-attachments/assets/6e6700ec-d227-48bf-a719-837ad45e074c" width="47%" style="margin-right:10px;" /> <img src="https://github.com/user-attachments/assets/3a63eaab-b030-487a-ae68-ee31b323739b" width="47%" /> </p>
-
-✅ This method saves time, avoids misconfigurations, and ensures consistent network behavior in your lab setup.
+For each machine `server.sh` and `client.sh`follow the same steps by creating a script and add the ip addresses as showing in the table.
+✅ This method saves time, avoids misconfigurations, and ensures consistent network behavior in your lab setup .
 
 To make sure that you asign to each interface the right ip address run this command in the terminal 
 
@@ -212,7 +212,7 @@ sudo a2enmod ssl
 sudo a2ensite default-ssl
 sudo systemctl restart apache2
 ```
-![image](https://github.com/user-attachments/assets/48afee02-ae91-4ecc-97b1-c48cba5708c0)
+<p align="center"><img src="https://github.com/user-attachments/assets/48afee02-ae91-4ecc-97b1-c48cba5708c0" width="50%"></p>
 
 ### Update `ports.conf`:
 
