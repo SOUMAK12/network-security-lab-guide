@@ -43,14 +43,13 @@ Use **Internal Network** mode in VirtualBox for full isolation in each machine:
 
 ### Interface Configuration
 For each **machine** (Client, Firewall, and Server), you have manually assign the following IP addresses to their respective network interfaces:
-<p align="center">
+
 | Machine  | Interface | IP Address     | To            |
 | -------- | --------- | -------------- | ------------- |
 | Client   | `enp0s3`  | `192.168.10.2` | Firewall eth0 |
 | Firewall | `eth0`    | `192.168.10.1` | Client        |
 | Firewall | `eth1`    | `192.168.20.1` | Server        |
 | Server   | `eth0`    | `192.168.20.2` | Firewall eth1 |
-</p>
 
 Assign **static IPs** manually in `/etc/network/interfaces` 
 
