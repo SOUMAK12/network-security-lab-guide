@@ -27,7 +27,8 @@ We use **VirtualBox** with 3 VMs:
 ```
 Client <--> Firewall <--> Server
 ```
-Firstofall chose  Internal Network mode in VirtualBox to isolate the Client and Server, with the Firewall controlling traffic between them. 
+Use **Internal Network** mode in VirtualBox for full isolation in each machine:
+
   ![image](https://github.com/user-attachments/assets/cd05367b-54a9-4c89-956e-4056abe7de12)
 * Client communicates *only* with Firewall
 * Server communicates *only* with Firewall
@@ -42,8 +43,7 @@ Firstofall chose  Internal Network mode in VirtualBox to isolate the Client and 
 </p>
 
 ### Interface Configuration
-
-Use **Internal Network** mode in VirtualBox for full isolation:
+For each **machine** (Client, Firewall, and Server), you have manually assign the following IP addresses to their respective network interfaces:
 
 | Machine  | Interface | IP Address     | To            |
 | -------- | --------- | -------------- | ------------- |
@@ -52,7 +52,20 @@ Use **Internal Network** mode in VirtualBox for full isolation:
 | Firewall | `eth1`    | `192.168.20.1` | Server        |
 | Server   | `eth0`    | `192.168.20.2` | Firewall eth1 |
 
-Assign **static IPs** manually in `/etc/network/interfaces` or via Netplan.
+Assign **static IPs** manually in `/etc/network/interfaces` .
+###⚙️ Automating IP Configuration with a Script
+When working with VirtualBox in Internal Network mode, machines may lose their IP addresses upon reboot or interface changes. To avoid manually reconfiguring each time, it's good practice to create a dedicated script for each machine that sets its static IP addresses.
+In the screenshot below, I demonstrate the creation and execution of such a script (firewall.sh) on the Firewall machine (Kali Linux).
+
+```bash
+sudo nano firewall.sh          # Create the script file
+sudo chmod +x firewall.sh     # Make it executable
+sudo ./firewall.sh            # Run the script
+```
+This script typically contains ip or ifconfig commands to assign static IPs to interfaces like eth0 and eth1.
+<p align="center"> <img src="https://github.com/user-attachments/assets/6e6700ec-d227-48bf-a719-837ad45e074c)" width="50%">
+  <img src="https://github.com/user-attachments/assets/3a63eaab-b030-487a-ae68-ee31b323739b" width="50%">
+</p>
 
 ---
 
