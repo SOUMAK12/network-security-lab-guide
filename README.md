@@ -168,7 +168,7 @@ The goal is to compare HTTP vs HTTPS and understand how unencrypted traffic can 
 * Open Wireshark on the Firewall machine.
 * Select the interface connected to either the Client (eth0) or Server (eth1).
 * Start capturing packets by clicking the blue shark icon.
-* Apply a filter to only see HTTP or TLS traffic:
+* Apply a filter to only see HTTP traffic:
   
 ```bash
 http 
@@ -179,7 +179,8 @@ These screenshots show the live packet capture window and the login page used to
   <img src="https://github.com/user-attachments/assets/c69fbd5d-464e-4458-872c-389126b0d654" width="30%" style="margin-right: 10px;" />
   <img src="https://github.com/user-attachments/assets/af891363-db39-4471-a82a-1cb855196391" width="30%" />
 </p>
-📬 Filtering for HTTP Traffic
+
+### 📬 Filtering for HTTP Traffic
 
 Captured HTTP request with sensitive data in plaintext:
 
@@ -246,45 +247,49 @@ You’ll observe:
 ```bash
 sudo iptables -A INPUT -p tcp --dport 443 -j DROP
 ```
-
 ✅ Result: HTTPS blocked.
 
+<p align="center"><img src="https://github.com/user-attachments/assets/6bcc56ec-758f-469a-93cb-599471e27fe7" width="50%"></p>
+
 ### Unblock HTTPS:
+Steps to Stop iptables from Filtering Traffic:
 
+1.	Flush all current iptables rules:
+This will remove all the current filtering rules.
 ```bash
-sudo iptables -D INPUT -p tcp --dport 443 -j DROP
+sudo iptables -F
 ```
+2.	Set the default policies to ACCEPT:
+This will allow all incoming, outgoing, and forwarded traffic by default.
+```bash
+sudo iptables -P INPUT ACCEPT
+sudo iptables -P FORWARD ACCEPT
+sudo iptables -P OUTPUT ACCEPT
+```
+4.	Verify that the rules have been cleared:
+After applying the changes, check the iptables configuration to ensure there are no active rules:
+```bash
+sudo iptables -L -n
+```
+You should see:
+```bash
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination         
 
-✅ Result: HTTPS allowed again.
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination         
 
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination
+```
 You can verify with:
 
 ```bash
 sudo iptables -L -n -v
 ```
----
-
-## 🕵️ 5. Capture Traffic with Wireshark
-
-### On the Firewall:
-
-* Open Wireshark
-* Select the interface (eth0 or eth1)
-* Apply filter:
-
-```bash
-http || tls
-```
-
-### Example:
-
-You’ll observe:
-
-* HTTP login request: `username=soumaya&password=kanfoud` in plaintext
-* HTTPS request: encrypted
+<p align="center"><img src="https://github.com/user-attachments/assets/6712bc61-f5d6-437d-8caf-9a51aca25daa" width="50%"></p>
 
 ---
-
 ## 🚨 6. Snort: Intrusion Detection Setup
 
 ### Install Snort (on Firewall):
