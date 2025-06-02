@@ -106,7 +106,7 @@ This script typically contains ip or ifconfig commands to assign static IPs to i
 
 To make sure that you asign to each interface the right ip address run this command in the terminal 
 
-<p align="center"><src img="https://github.com/user-attachments/assets/dd0251f5-1325-45ab-8950-0ac970cb1d81" width="50%"></p>
+<p align="center"><img src="https://github.com/user-attachments/assets/dd0251f5-1325-45ab-8950-0ac970cb1d81" width="50%"></p>
 
 ---
 ## 🌐 2. Set Up Apache2 Web Server (on Server VM)
@@ -215,14 +215,15 @@ sudo systemctl restart apache2
 ![image](https://github.com/user-attachments/assets/48afee02-ae91-4ecc-97b1-c48cba5708c0)
 
 ### Update `ports.conf`:
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/0087d1e0-6170-43a8-9135-a32bf280a9b0" width="48%" style="margin-right: 2%;" />
-  <img src="https://github.com/user-attachments/assets/3f7f848f-d9bf-4240-9216-702929f28efd" width="48%" />
-</p>
+
 Make sure it includes:
 ```
 Listen 443
 ```
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/0087d1e0-6170-43a8-9135-a32bf280a9b0" width="48%" style="margin-right: 2%;" />
+  <img src="https://github.com/user-attachments/assets/3f7f848f-d9bf-4240-9216-702929f28efd" width="48%" />
+</p>
 
 ### Common Warning:
 ![image](https://github.com/user-attachments/assets/543b6b70-f0d9-4082-8df4-80ed08768e8e)
