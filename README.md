@@ -101,7 +101,7 @@ This script typically contains ip or ifconfig commands to assign static IPs to i
 
 <p align="center"> <img src="https://github.com/user-attachments/assets/6e6700ec-d227-48bf-a719-837ad45e074c" width="47%" style="margin-right:10px;" /> <img src="https://github.com/user-attachments/assets/3a63eaab-b030-487a-ae68-ee31b323739b" width="47%" /> </p>
 
-For each machine `server.sh `  and  `client.sh` follow the same steps by creating a script and add the ip addresses as showing in the table.
+For each machine `server.sh `  and  `client.sh` follow the same steps by creating a script and adding the ip addresses as showing in the table.
 
 ✅ This method saves time, avoids misconfigurations, and ensures consistent network behavior in your lab setup .
 
@@ -186,7 +186,7 @@ These screenshots show the live packet capture window and the login page used to
 
 Captured HTTP request with sensitive data in plaintext:
 
-![image](https://github.com/user-attachments/assets/e66de6b3-805e-4dad-bb65-5f2877ecabcd)
+<p align="center"><img src="https://github.com/user-attachments/assets/e66de6b3-805e-4dad-bb65-5f2877ecabcd" width="50%"></p>
 
 This line confirms that username and password are transmitted without encryption over HTTP.
 ```bash
@@ -228,7 +228,7 @@ Listen 443
 </p>
 
 ### Common Warning:
-![image](https://github.com/user-attachments/assets/543b6b70-f0d9-4082-8df4-80ed08768e8e)
+<p align="center"><img src="https://github.com/user-attachments/assets/543b6b70-f0d9-4082-8df4-80ed08768e8e" width="50%"></p>
 
 > ⚠️ Browser may show "Potential Security Risk Ahead" due to self-signed cert. ✅ Accept the risk and continue.
 
@@ -239,7 +239,7 @@ tls
 ```
 You’ll observe:
 * HTTPS request: encrypted
-![image](https://github.com/user-attachments/assets/e5d3a227-41f4-460f-b70a-bda513129fde)
+<p align="center"><img src="https://github.com/user-attachments/assets/e5d3a227-41f4-460f-b70a-bda513129fde" width="50%"></p>
 
 ---
 ## 🔥 5. Configure iptables on Firewall
@@ -342,4 +342,5 @@ This lab forms a solid foundation in **hands-on network security** for beginners
 ## 📎 Bonus
 
 Feel free to fork this repo, add your own test cases, rules, or share suggestions via Pull Requests!
-🔗 LinkedIn: 
+
+🔗 LinkedIn: www.linkedin.com/in/soumaya-elkanfoud-987442247
