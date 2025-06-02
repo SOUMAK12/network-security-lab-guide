@@ -31,13 +31,15 @@ Firstofall chose  Internal Network mode in VirtualBox to isolate the Client and 
   ![image](https://github.com/user-attachments/assets/cd05367b-54a9-4c89-956e-4056abe7de12)
 * Client communicates *only* with Firewall
 * Server communicates *only* with Firewall
-  ![image](https://github.com/user-attachments/assets/063312da-ce1d-42cf-9a73-7a87a5a23cb1)![image](https://github.com/user-attachments/assets/7ff5435d-a9f7-4b06-9413-d46353c6b6f2)![image](https://github.com/user-attachments/assets/387e071c-84db-4f57-bbea-6b8338abe9ae)![image](https://github.com/user-attachments/assets/34b10fa1-76ed-4191-8ba4-bb2dcab943fe)
-
-
-
-
-
-
+  
+  <p align="center">
+  <img src="https://github.com/user-attachments/assets/063312da-ce1d-42cf-9a73-7a87a5a23cb1" width="45%" style="margin-right: 10px;"/>
+  <img src="https://github.com/user-attachments/assets/7ff5435d-a9f7-4b06-9413-d46353c6b6f2" width="45%"/>
+</p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/387e071c-84db-4f57-bbea-6b8338abe9ae" width="45%" style="margin-right: 10px;"/>
+  <img src="https://github.com/user-attachments/assets/34b10fa1-76ed-4191-8ba4-bb2dcab943fe" width="45%"/>
+</p>
 
 ### Interface Configuration
 
