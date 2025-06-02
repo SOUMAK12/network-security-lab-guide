@@ -109,8 +109,11 @@ Paste the following basic HTML code inside login.html:
 </html>
 ```
 Save and exit nano:
+
 Press `Ctrl + O` → then `Enter` to save.
+
 Then press `Ctrl + X` to `exit`.
+
 After configuring the server and website, test the setup by accessing the server’s IP address from both server and the client machine. 
 Test by accessing `http://192.168.20.2/login.html` use firefox or any browser :
 ![image](https://github.com/user-attachments/assets/bf03806d-8bf2-47b8-97bc-82147ed6e25d)
