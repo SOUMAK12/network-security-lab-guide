@@ -46,12 +46,44 @@ Use **Internal Network** mode in VirtualBox for full isolation in each machine:
 ### Interface Configuration
 For each **machine** (Client, Firewall, and Server), you have manually assign the following IP addresses to their respective network interfaces:
 
-| Machine  | Interface | IP Address     | To            |
-| -------- | --------- | -------------- | ------------- |
-| Client   | `enp0s3`  | `192.168.10.2` | Firewall eth0 |
-| Firewall | `eth0`    | `192.168.10.1` | Client        |
-| Firewall | `eth1`    | `192.168.20.1` | Server        |
-| Server   | `eth0`    | `192.168.20.2` | Firewall eth1 |
+<div align="center">
+
+  
+<table>
+  <tr>
+    <th>Machine</th>
+    <th>Interface</th>
+    <th>IP Address</th>
+    <th>To</th>
+  </tr>
+  <tr>
+    <td>Client</td>
+    <td><code>enp0s3</code></td>
+    <td><code>192.168.10.2</code></td>
+    <td>Firewall eth0</td>
+  </tr>
+  <tr>
+    <td>Firewall</td>
+    <td><code>eth0</code></td>
+    <td><code>192.168.10.1</code></td>
+    <td>Client</td>
+  </tr>
+  <tr>
+    <td>Firewall</td>
+    <td><code>eth1</code></td>
+    <td><code>192.168.20.1</code></td>
+    <td>Server</td>
+  </tr>
+  <tr>
+    <td>Server</td>
+    <td><code>eth0</code></td>
+    <td><code>192.168.20.2</code></td>
+    <td>Firewall eth1</td>
+  </tr>
+</table>
+
+</div>
+
 
 Assign **static IPs** manually in `/etc/network/interfaces` 
 
@@ -138,8 +170,9 @@ The goal is to compare HTTP vs HTTPS and understand how unencrypted traffic can 
 * Select the interface connected to either the Client (eth0) or Server (eth1).
 * Start capturing packets by clicking the blue shark icon.
 * Apply a filter to only see HTTP or TLS traffic:
+  
 ```bash
-http || tls
+http 
 ```
 These screenshots show the live packet capture window and the login page used to trigger HTTP requests.
 <p align="center">
@@ -148,13 +181,15 @@ These screenshots show the live packet capture window and the login page used to
   <img src="https://github.com/user-attachments/assets/af891363-db39-4471-a82a-1cb855196391" width="30%" />
 </p>
 📬 Filtering for HTTP Traffic
+
 Captured HTTP request with sensitive data in plaintext:
+
 ![image](https://github.com/user-attachments/assets/e66de6b3-805e-4dad-bb65-5f2877ecabcd)
 
+This line confirms that username and password are transmitted without encryption over HTTP.
 ```bash
 GET /test1/?username=salut&password=kan HTTP/1.1
 ```
-This line confirms that username and password are transmitted without encryption over HTTP.
 ### ⚠️ Security Risk
 
  HTTP transmits sensitive data in plaintext, making it vulnerable to interception. To protect this data, HTTPS should be used, as it encrypts communication, ensuring the confidentiality and integrity of sensitive information.
