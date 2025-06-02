@@ -8,7 +8,7 @@ This guide documents the steps to build a virtual lab to test and implement esse
 * **Wireshark** (traffic analyzer)
 * **OpenSSL + Apache2** (HTTPS server setup)
 
-We use **VirtualBox** with 3 VMs:
+Use **VirtualBox** with 3 VMs:
   <p align="center">
 <img src="https://github.com/user-attachments/assets/57711009-e578-4387-8018-cbc38232d313" width="50%"></p>
 
