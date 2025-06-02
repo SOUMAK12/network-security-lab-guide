@@ -28,7 +28,7 @@ Client <--> Firewall <--> Server
 ```
 Use **Internal Network** mode in VirtualBox for full isolation in each machine:
   <p align="center">
- <src img="https://github.com/user-attachments/assets/cd05367b-54a9-4c89-956e-4056abe7de12" width></p>
+ <img src="https://github.com/user-attachments/assets/cd05367b-54a9-4c89-956e-4056abe7de12" width></p>
    
 * Client communicates *only* with Firewall
    
