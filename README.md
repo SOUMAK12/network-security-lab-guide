@@ -21,7 +21,7 @@ We use **VirtualBox** with 3 VMs:
 
 * 🔒 **Firewall** (Kali Linux)
 * 🧑‍💻 **Client** (Ubuntu)
-* 🖥️ **Server** (Ubuntu Server or any machine you have)
+* 🖥️ **Server** (kali Server or any machine you have)
 
 ---
 
@@ -32,9 +32,11 @@ We use **VirtualBox** with 3 VMs:
 ```
 Client <--> Firewall <--> Server
 ```
-
+-Firstofall chose  Internal Network mode in VirtualBox to isolate the Client and Server, with the Firewall controlling traffic between them. 
 * Client communicates *only* with Firewall
 * Server communicates *only* with Firewall
+  ![image](https://github.com/user-attachments/assets/9a1e1b45-56cc-4658-a61e-aaeb0a780dcf)
+
 
 ### Interface Configuration
 
